@@ -1,0 +1,13 @@
+Let us start by enhancing Student and Staff classes. They have common functionalities, we need to extract them to a separate Person class. Provide an implementation of such a class performing needed changes to Student and Staff classes. 
+public class Person{
+ protected String name; 
+ protected String address; 
+ protected String school; 
+ protected String clazz; 
+}
+public class Student extends Person{ 
+ private double fee;  
+} 
+public class Staff extends Person{ 
+ private double sallary; 
+} 
