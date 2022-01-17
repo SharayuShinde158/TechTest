@@ -1,0 +1,42 @@
+public class Student { 
+ private String name; 
+ private String address; 
+ private String school; 
+ private String clazz; 
+ private double fee;  
+} 
+public class Staff { 
+ private String name; 
+ private String address; 
+ private String school; 
+ private String clazz; 
+ private double sallary; 
+} 
+public class StudentRepo { 
+ private List<Student> students = new ArrayList<>(); 
+ public void addStudent(Student s){ 
+ students.add(s); 
+ } 
+ public Student searchByName(String name) { 
+ for(Student stud : students)
+    {  
+      if(stud.getName().equals(name)){
+        return stud;
+      }
+    }
+ } 
+} 
+public class StaffRepo { 
+ private List<Staff> staffs = new ArrayList<>(); 
+ public void addStaff(Staff s){ 
+ staffs.add(s); 
+ } 
+ public Staff searchByName(String name) { 
+    for(Staff staff : staffs)
+        {  
+          if(staff.getName().equals(name)){
+            return staff;
+          }
+        }
+ } 
+}
