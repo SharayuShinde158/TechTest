@@ -1,0 +1,24 @@
+Now let us move toStudentRepo and StaffRepo classes; they seem very similar, to remove this redundancy we want to replace them  with a single PersonRepo class that can hold Student or Staff items (i.e. an instance of PersonRepo can hold either Student or St aff instances) in a type safe way. Provide an implementation for such a PersonRepoclass. 
+public class PersonRepo{
+PersonRepo(String type){
+  if(type.equals("Student")){
+    protected List<Student> students = new ArrayList<>(); 
+  }
+  else if(type.equals("Staff")){
+    protected List<Staff> staffs = new ArrayList<>(); 
+  }
+}
+}
+
+
+public class StudentRepo extends PersonRepo { 
+ 
+ public void addStudent(Student s){ 
+ students.add(s); 
+ }
+
+
+public class StaffRepo extends PersonRepo{ 
+ public void addStaff(Staff s){ 
+ staffs.add(s); 
+ } 
