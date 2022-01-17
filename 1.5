@@ -1,8 +1,24 @@
 Requirement was changed and now we want to enable PersonRepo class to hold both types Student and Staff. Provide a modified  implementation to reflect this change. 
 
-public class PersonRepo { 
-  HashMap<
- private List<Staff> staffs = new ArrayList<>(); 
+public class PersonRepo{
+public PersonRepo(){
+  
+    protected List<Student> students = new ArrayList<>(); 
+  
+    protected List<Staff> staffs = new ArrayList<>(); 
+ 
+}
+}
+
+
+public class StudentRepo extends PersonRepo { 
+ 
+ public void addStudent(Student s){ 
+ students.add(s); 
+ }
+
+
+public class StaffRepo extends PersonRepo{ 
  public void addStaff(Staff s){ 
  staffs.add(s); 
  } 
