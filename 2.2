@@ -1,0 +1,21 @@
+Did statement on line 4 fix the name inserted item at line 2 or we have now a duplicate item? If we have duplicate item then how can we  fix this problem? we need to have any two items with same id be treated as same one. 
+
+@Override
+	public int hashCode() {
+	    System.out.println("In hashcode");
+	    return this.getId();
+	}
+ 
+	@Override
+	public boolean equals(Object obj) {
+		Item e = null;
+	    if(obj instanceof Item){
+	        e = (Item) obj;
+	    }
+	    System.out.println("In equals");
+	    if(this.getId() == e.getId()){
+	        return true;
+	    } else {
+	        return false;
+	    }  
+	}
