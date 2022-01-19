@@ -1,0 +1,13 @@
+Add implementation for removeItemById()and getItemById() methods. 
+Solution:-
+public void removeItemById(int itemId){ 
+ 
+	 Iterator<Item> it = items.iterator();
+	 while(it.hasNext()) {
+		 Item item=it.next();
+		 if(item.getId()==itemId) {
+			 items.remove(item);
+		 }
+	 }
+
+ } 
