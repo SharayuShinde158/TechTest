@@ -1,0 +1,83 @@
+Suppose that adding item to a repo is an expensive operation (see modified implementation of putItem() below) and we want to move  it to a background thread. Modify the implementation putItem() to: 1) execute actualPutItem() on a background thread and 2)  notify caller about the completion of the operation through a callback 
+
+class Item { 
+ private int id; 
+ private String name; 
+  Item(int i,String s){
+  this.id=i;
+  this.name=s;
+  }
+} 
+
+
+interface EventListener {
+	void onEvent();
+}
+class A implements EventListener {
+
+	@Override
+	public void onEvent()
+	{
+		System.out.println("Finished background operations");
+		
+	}
+
+}
+
+class B {
+
+	private EventListener mListener; // listener field
+
+	// setting the listener
+	public void registerEventListener(EventListener mListener)
+	{
+		this.mListener = mListener;
+	}
+  private void actualPutItem(Item item){ 
+ // Simulate an expensive operation 
+ Thread.sleep(2000); 
+ items.add(item); 
+}
+	
+	public void putItem(Item item)
+	{
+		new Thread(new Runnable() {
+			public void run()
+			{
+        Runnable r = new Runnable() {
+         public void run() {
+             actualPutItem(item);
+         }
+     };
+
+     new Thread(r).start();
+				
+				if (mListener != null) {
+
+					// invoke the callback method of class A
+					mListener.onEvent();
+				}
+			}
+		}).start();
+	}
+
+	// Driver Program
+	public static void main(String[] args)
+	{
+
+		B obj = new B();
+		EventListener mListener = new A();
+    
+		obj.registerEventListener(mListener);
+    Item item=new Item(1,"abc");
+		obj.putItem(item)
+	}
+}
+
+
+
+
+
+
+
+
