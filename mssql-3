@@ -1,0 +1,22 @@
+Given the following query, how could it be optimized? List all assumptions: 
+select c.* FROM companies AS c 
+JOIN users AS u USING(companyid) 
+JOIN jobs AS j USING(userid) 
+JOIN  useraccounts AS ua USING(userid) 
+WHERE j.jobid = 123; 
+
+Solution 
+Create index on userid and companyid
+Alternative:-
+Antijoin
+
+select c.* 
+FROM companies AS c 
+WHERE EXISTS (
+  SELECT 1 FROM users AS u 
+  JOIN jobs AS j USING(userid) 
+  JOIN useraccounts AS ua USING(userid)
+  WHERE u.companyid = c.companyid
+    AND j.jobid = 123
+) 
+; 
