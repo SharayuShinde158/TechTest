@@ -1,0 +1,41 @@
+class ItemRepo{ 
+ private Set<Item> items = new HashSet<>(); 
+ public List<Listeners> listeners=new ArrayList<Listeners>();
+ public void addListener(Listeners listener){
+  listeners.add(listener);
+ }
+ public void removeListener(Listeners listener){
+  listeners.remove(listener);
+ }
+ 
+ public void putItem(Item item){ 
+ items.add(item); 
+ notifyAllListener("inserted "+item.getId());
+ } 
+  
+ public void itemRemoved(Item item){ 
+ items.remove(item); 
+ notifyAllListener("removed "+item.getId());
+ } 
+ public void notifyAllListener(String msg){
+  for(Listeners l:listeners){
+      l.update(msg);
+  }
+ }
+}
+public abstract class Listeners{
+protected ItemRepo itemrepo;
+public abstract void update(String msg);
+}
+
+public class ListenersOne extends Listeners{
+public ListenersOne(ItemRepo itemrepo){
+  this.itemrepo=itemrepo;
+  this.itemrepo.addListener(this)
+  }
+  @Override
+  public void update(String msg)
+  {
+    System.out.println(msg);
+  }
+}
