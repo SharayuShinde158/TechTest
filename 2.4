@@ -41,24 +41,22 @@ class B {
 	
 	public void putItem(Item item)
 	{
-		new Thread(new Runnable() {
-			public void run()
-			{
-        Runnable r = new Runnable() {
-         public void run() {
-             actualPutItem(item);
-         }
-     };
+		 Runnable r = new Runnable() 
+		 {
+		 
+			 public void run() {
+			     actualPutItem(item);
+			 }
+	     	};
 
-     new Thread(r).start();
+	     	new Thread(r).start();
 				
-				if (mListener != null) {
+		if (this.mListener != null) {
 
-					// invoke the callback method of class A
-					mListener.onEvent();
-				}
-			}
-		}).start();
+			// invoke the callback method of class A
+			mListener.onEvent();
+		}
+			
 	}
 
 	// Driver Program
@@ -69,7 +67,7 @@ class B {
 		EventListener mListener = new A();
     
 		obj.registerEventListener(mListener);
-    Item item=new Item(1,"abc");
+    		Item item=new Item(1,"abc");
 		obj.putItem(item)
 	}
 }
