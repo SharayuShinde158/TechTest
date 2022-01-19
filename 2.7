@@ -1,0 +1,32 @@
+We need add the ability to remove a listener when needed; to do so we need to modify addListener() method to return a java.io. Closeable instance; closing this Closeable would remove the listener. 
+
+import java.io.Closeable;
+import java.io.IOException;
+
+class ItemRepo implements Closeable { 
+ private Set<Item> items = new HashSet<>(); 
+ public List<Listeners> listeners=new ArrayList<Listeners>();
+ public void addListener(Listeners listener){
+  listeners.add(listener);
+ }
+
+ @Override
+ public void close() throws IOException {
+        listeners.remove(listener);
+ }
+ 
+ public void putItem(Item item){ 
+ items.add(item); 
+ notifyAllListener("inserted "+item.getId());
+ } 
+  
+ public void itemRemoved(Item item){ 
+ items.remove(item); 
+ notifyAllListener("removed "+item.getId());
+ } 
+ public void notifyAllListener(String msg){
+  for(Listeners l:listeners){
+      l.update(msg);
+  }
+ }
+}
