@@ -1,1 +1,26 @@
-Add a new searchByName() method that takes a second kind parameter (of type to be determined) returning Student type in case k ind was student and returning Staff type in case kind was staff.
+Add a new searchByName() method that takes a second kind parameter (of type to be determined) returning Student type in case kind was student and returning Staff type in case kind was staff.
+
+Solution : METHOD OVERLOADING
+
+   public Student searchByName(String name,Student s){
+        for(Student stud : students)
+        {  
+              if(stud.getName().equals(name))
+              {
+                return stud;
+              }
+        }
+  }
+
+  public Staff searchByName(String name,Staff s){
+        for(Staff s : staff)
+        {  
+              if(s.getName().equals(name))
+              {
+                return s;
+              }
+        }
+  }
+  
+
+
