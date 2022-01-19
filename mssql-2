@@ -1,0 +1,7 @@
+Recreate the query that returned the 10 rows of data supplied. Speculate on tables that would be 
+needed that are not shown here.
+
+
+SELECT top(10) user.user_firstname, user.user_lastname, user_skill.skill_name
+FROM user , user_skill
+WHERE user.user_id =user_skill.user_id;
